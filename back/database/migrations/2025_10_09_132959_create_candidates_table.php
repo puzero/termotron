@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('status')->default('active');
             $table->string('resume_text');
             $table->date('application_date');
-            $table->date('application_closing_date');
-            $table->date('interview_date');
+            $table->date('application_closing_date')->nullable();
+            $table->date('interview_date')->nullable();
             $table->timestamps();
         });
     }
