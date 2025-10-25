@@ -34,9 +34,17 @@ const sidebarItem: menu[] = [
     to: "/",
   },
   {
-    title: "Emploee",
-    to: "/emploee"  
+    title: "employees",
+    to: "/employees",
   },
+  {
+    title: "vacancies",
+    to: "/vacancies",
+  },
+  {
+    title: "candidates",
+    to: "/candidates",
+  }
 ];
 
 export default sidebarItem;
