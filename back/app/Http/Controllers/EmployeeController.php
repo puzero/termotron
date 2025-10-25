@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Employee;
+
+class EmployeeController extends Controller
+{
+    //
+    public function index()
+    {
+        $employees = Employee::with(['department', 'position'])->get();
+        
+        return response()->json([
+            'success' => true,
+            'data' => $employees
+        ]);
+    }
+
+    public function update(Request $request, string $id)
+    {
+        //
+        if(!empty($id)) {
+            $employee = Employee::find($id);
+        }   else{
+            $employee = new Employee();
+        }
+        $employee->last_name = $request['lats_name'];
+        $employee->middle_name = $request['middle_name'];
+        $employee->last_name = $request['last_name'];
+        $employee->phone = $request['phone'];
+        $employee->email = $request['email'];
+        $employee->salary = $request['salary'];
+        $employee->position_id = $request['position_id'];
+        $employee->department_id = $request['department_id'];
+        $employee->hire_date = $request['hire_date'];
+        $employee->birth_date = $request['birth_date'];
+        $employee->status = $request['status'];
+
+
+        $employee->save();
+        // Возвращаем ответ с кодом 201 (Created)
+        return response()->json([
+            'success' => true,
+            'message' => 'User created successfully',
+        ], 201);
+    }
+
+    public function destroy(string $id)
+    {
+        //
+        $employee = Employee::find($id);
+
+        // Если пользователь не существует
+        if (!$employee) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not found'
+            ], 404);
+        }
+
+        // Удаляем пользователя
+        $employee->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User deleted successfully'
+        ]);
+    }
+}
