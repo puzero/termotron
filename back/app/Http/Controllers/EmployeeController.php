@@ -26,9 +26,9 @@ class EmployeeController extends Controller
         }   else{
             $employee = new Employee();
         }
-        $employee->last_name = $request['lats_name'];
-        $employee->middle_name = $request['middle_name'];
         $employee->last_name = $request['last_name'];
+        $employee->middle_name = $request['middle_name'];
+        $employee->first_name = $request['first_name'];
         $employee->phone = $request['phone'];
         $employee->email = $request['email'];
         $employee->salary = $request['salary'];
@@ -43,7 +43,7 @@ class EmployeeController extends Controller
         // Возвращаем ответ с кодом 201 (Created)
         return response()->json([
             'success' => true,
-            'message' => 'User created successfully',
+            'message' => 'Employee created successfully',
         ], 201);
     }
 
