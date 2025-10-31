@@ -25,20 +25,6 @@
             />
         </v-dialog>
 
-        <v-dialog
-            v-model="surveyShowIsOpened"
-            width="800"
-            persistent
-        >
-            <manager-survey-show
-            :surveyName ="surveyName"
-            :answers="answers"
-            :questions="questions"
-            @cancel="cancelShow"
-            />
-
-        </v-dialog>
-
         <v-data-table 
             :headers="headers"
             :items="users"
@@ -75,34 +61,6 @@
                             >
                             Удалить
                             </v-btn>
-                    </v-list-item>
-                    <v-list-item>
-                        <v-menu>
-                            <template v-slot:activator="{ props }">
-                                <v-btn
-                                prepend-icon="ri-delete-bin-7-line"
-                                class="justify-start"
-                                block
-                                color="red"
-                                variant="text"
-                                v-bind="props"
-                                @click="userToShow = item"
-                                >Опросы</v-btn>
-                            </template>
-
-                            <v-list>
-                                <v-list-item v-for="item in surveys">
-                                <v-btn
-                                prepend-icon="ri-delete-bin-7-line"
-                                class="justify-start"
-                                block
-                                color="red"
-                                variant="text"
-                                @click="loadAnswersQuestions(item.id, userToShow.item.id, item.name)"
-                                > {{ item.name }}</v-btn>
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
                     </v-list-item>
                 </v-list>
             </v-menu>

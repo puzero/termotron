@@ -2,19 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $employees = Employee::with(['department', 'position'])->get();
+        $query = Employee::with(['position', 'department']);
+        
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = $request->search;
+            
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('last_name', 'like', "%{$searchTerm}%")
+                  ->orWhere('first_name', 'like', "%{$searchTerm}%")
+                  ->orWhere('middle_name', 'like', "%{$searchTerm}%")
+                  ->orWhere(DB::raw("CONCAT(last_name, ' ', first_name, ' ', middle_name)"), 'like', "%{$searchTerm}%");
+            });
+        }
+        
+        $employees = $query->get();
         
         return response()->json([
-            'success' => true,
-            'data' => $employees
+            'data' => $employees,
+            'success' => true
         ]);
     }
 

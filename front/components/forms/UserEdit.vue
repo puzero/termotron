@@ -1,6 +1,5 @@
 <template>
     <VCard>
-        {{ currentUser }}
         <VCardTitle class="text-h5">
             Редактировать пользователя
         </VCardTitle>
@@ -41,16 +40,6 @@
                         :append-inner-icon="isPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'"
                         label="Новый пароль"
                         @click:append-inner="isPasswordVisible = !isPasswordVisible"
-                    />
-                </VCol>
-                <VCol cols="6">
-                    <VTextField
-                        :id="useId()"
-                        v-model="currentUser.passwordConfirm"
-                        :type="isPasswordConfirmVisible ? 'text' : 'password'"
-                        :append-inner-icon="isPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'"
-                        label="Подтвердите пароль"
-                        @click:append-inner="isPasswordConfirmVisible = !isPasswordConfirmVisible"
                     />
                 </VCol>
             </VRow>
