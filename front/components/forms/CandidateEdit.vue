@@ -54,7 +54,7 @@
                     <VCol cols="6">
                         <VSelect
                             :items="statuses"
-                            item-title="label"
+                            item-title="title"
                             item-value="value"
                             v-model="currentCandidate.status"
                             label="Статус"
@@ -168,10 +168,10 @@ const emit = defineEmits(['apply', 'cancel']);
 
 // Статусы с русскими labels
 const statuses = [
-    { value: 'Новый', label: 'Новый' },
-    { value: 'Собеседование', label: 'Собеседование' },
-    { value: 'Отклонен', label: 'Отклонен' },
-    { value: 'Принят', label: 'Принят' }
+    { title: 'Новый', value: 'new' },
+    { title: 'Собеседование', value: 'interview' },
+    { title: 'Отклонен', value: 'Rejected' },
+    { title: 'Принят', value: 'Accepted' }
 ]
 
 // Правильная инициализация currentCandidate

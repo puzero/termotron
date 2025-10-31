@@ -33,5 +33,6 @@ Route::get('/departments',[DepartmentController::class, 'index']);
 Route::get('/vacancies',[VacancyController::class, 'index']);
 Route::delete('/vacancies/{id}', [VacancyController::class, 'destroy']);
 Route::get('/candidates',[CandidateController::class, 'index']);
+Route::delete('/candidates/{id}', [CandidateController::class, 'destroy']);
 Route::post('/vacancies/{id}', [VacancyController::class, 'update']);
 Route::post('/candidates/{id}', [CandidateController::class, 'update']);
