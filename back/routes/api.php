@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\VacancyController;
 use App\Models\Answer;
 use App\Models\Survey;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +30,8 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 Route::post('/users/{id}', [UserController::class, 'update']);
 Route::get('/positions', [PositionController::class, 'index']);
 Route::get('/departments',[DepartmentController::class, 'index']);
+Route::get('/vacancies',[VacancyController::class, 'index']);
+Route::delete('/vacancies/{id}', [VacancyController::class, 'destroy']);
+Route::get('/candidates',[CandidateController::class, 'index']);
+Route::post('/vacancies/{id}', [VacancyController::class, 'update']);
+Route::post('/candidates/{id}', [CandidateController::class, 'update']);
